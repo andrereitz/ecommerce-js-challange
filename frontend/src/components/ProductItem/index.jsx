@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { PlusIcon, StarIcon } from "@/components";
-import { useStock } from "@/hooks/useStock";
 
 export const ProductItem = ({ product, odd }) => {
   const { VITE_API_URL } = import.meta.env;
@@ -8,7 +7,7 @@ export const ProductItem = ({ product, odd }) => {
 
   return(
     <div 
-      className='bg-white' 
+      className='bg-white flex flex-col' 
       style={{
         borderRadius: `${odd ? '32px' : '12px'} ${!odd ? '32px' : '12px'} 12px 12px`
       }}
@@ -19,7 +18,7 @@ export const ProductItem = ({ product, odd }) => {
       <img src={`${VITE_API_URL}${product.image}`} className='object-contain aspect-square' />
       <div className="flex justify-between items-end">
         <div className="flex flex-col pl-3.5 pb-2">
-          <span className="text-xs text-gray-x-light flex gap-2"><StarIcon /> 4.6</span>
+          <span className="text-xs text-gray-x-light flex gap-2 items-center"><StarIcon /> 4.6</span>
           <span className="text-base text-off-black">
             ${(product.price/100).toFixed(2)}
           </span>

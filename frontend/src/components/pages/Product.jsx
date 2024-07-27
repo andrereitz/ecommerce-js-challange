@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useStock } from '@/hooks/useStock';
-import { IconButton, Spinner, VariantBadge } from '@/components';
-import { Bag } from '@/components/icons';
-import { Elipsis } from '../icons';
-import { BackArrow } from '../shared';
+import { Spinner, VariantBadge, ProductNavbar, ProductActions } from '@/components';
 
 export const Product = () => {
-  const navigate = useNavigate();
   const params = useParams();
   const id = params.product.split('-')[0];
   const [product, setProduct] = useState(null)
@@ -17,17 +13,13 @@ export const Product = () => {
 
   const { VITE_API_URL } = import.meta.env;
 
-  console.log(stock)
-
   async function getProduct() {
     try {
       const resp = await fetch(`${VITE_API_URL}/product/${id}`);
 
       if(resp.status === 200) {
         const json = await resp.json();
-  
-        console.log(json)
-  
+    
         setProduct(json)
         return;
       }
@@ -36,7 +28,7 @@ export const Product = () => {
 
     } catch(err) {
 
-      console.log('Error getting product data')
+      alert('Error getting product data')
     }
   }
 
@@ -51,11 +43,7 @@ export const Product = () => {
   return(
     <div className='max-w-[600px] text-left font-dm bg-off-white'>
       <div className='flex flex-col justify-center pt-10 px-6 pb-2.5'>
-        <div className='flex justify-between items-center'>
-          <IconButton onClick={() => navigate(-1)}><BackArrow /></IconButton>
-          <span className='text-lg font-dm font-bold'>Detail</span>
-          <IconButton><Elipsis /></IconButton>
-        </div>
+        <ProductNavbar />
         <img src={`${VITE_API_URL}${product.image}`} className='aspect-square object-contain max-h-[240px] pt-1' style={{ mixBlendMode: 'multiply' }} />
       </div>
       <div className='bg-white pl-9 pr-4 pt-11 pb-9 translate-x-[-10px]' style={{ borderRadius: '48px 48px 0 0' }}>
@@ -104,10 +92,7 @@ export const Product = () => {
         )}
         {loading && <Spinner />}
 
-        <div className='flex gap-4 pt-12'>
-          <IconButton outline size={54}><Bag /></IconButton>
-          <button className='bg-orange text-white rounded-xl h-[54px] flex-auto'>Add to Cart</button>
-        </div>
+        <ProductActions />
       </div>
     </div>
   )

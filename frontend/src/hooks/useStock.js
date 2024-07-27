@@ -16,7 +16,7 @@ export const useStock = (id) => {
         setStock(json)
       }
     } catch(err) {
-      alert('Error getting stock data')
+      console.log('Error getting stock data')
     } finally {
       setFirstLoad(false)
     }
