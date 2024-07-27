@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { PlusIcon, StarIcon } from "@/components";
+import { useStock } from "@/hooks/useStock";
 
 export const ProductItem = ({ product, odd }) => {
   const { VITE_API_URL } = import.meta.env;
@@ -11,23 +13,23 @@ export const ProductItem = ({ product, odd }) => {
         borderRadius: `${odd ? '32px' : '12px'} ${!odd ? '32px' : '12px'} 12px 12px`
       }}
     >
-      <h3 className='text-center px-4 pt-4'>
+      <h3 className='text-center px-4 pt-4 pb-1 text-base text-gray-dark'>
         {product.brand}
       </h3>
       <img src={`${VITE_API_URL}${product.image}`} className='object-contain aspect-square' />
-      <div className="flex justify-between">
-        <div className="flex flex-col">
-          <span>rate here</span>
-          <span>
-            price here
+      <div className="flex justify-between items-end">
+        <div className="flex flex-col pl-3.5 pb-2">
+          <span className="text-xs text-gray-x-light flex gap-2"><StarIcon /> 4.6</span>
+          <span className="text-base text-off-black">
+            ${(product.price/100).toFixed(2)}
           </span>
         </div>
         <button 
           style={{ borderRadius: '8px 0 8px 0' }} 
-          className="bg-orange text-white" 
+          className="bg-orange text-white w-[40px] h-[40px] flex items-center justify-center" 
           onClick={() => navigate(`/product/${product.id}-${product.brand}`)}
         >
-          +
+          <PlusIcon />
         </button>
       </div>
     </div>

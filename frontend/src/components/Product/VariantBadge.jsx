@@ -1,7 +1,10 @@
 export const VariantBadge = ({ title, onClick, isSelected }) => {
   return (
-    <div className={`rounded-pill border border-red-400 p-3 ${isSelected ? 'bg-orange-500' : ''}`} onClick={onClick}>
+    <button 
+      className={`rounded-full whitespace-nowrap border border-gray-xx-light py-1.5 px-4 text-sm text-gray-xx-light ${isSelected ? 'border-orange text-orange' : ''}`} 
+      onClick={onClick}
+    >
       {title}
-    </div>
+    </button>
   )
 }
