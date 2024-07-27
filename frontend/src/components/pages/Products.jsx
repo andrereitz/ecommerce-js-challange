@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navbar, ProductItem } from "@/components";
+import { Navbar, ProductItem, WelcomeBlock } from "@/components";
 
 export const Products = () => {
   const [products, setProducts] = useState([])
@@ -25,8 +25,7 @@ export const Products = () => {
   return(
     <div className='max-w-[600px] text-left font-dm px-6 bg-off-white'>
       <Navbar />
-      <span className='text-base text-gray-light font-light'>Hi Mr. Michael</span>
-      <h1 className='text-gray-dark text-2xl font-bold pt-1 pb-3.5 font-dm'>Welcome Back!</h1>
+      <WelcomeBlock />
       <h2 className='text-lg pb-4'>Our Products</h2>
       <div className='grid grid-cols-2 gap-3.5'>
         {products.length && products.map((product, index) => {

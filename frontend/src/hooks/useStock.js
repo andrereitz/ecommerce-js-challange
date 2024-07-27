@@ -25,7 +25,7 @@ export const useStock = (id) => {
   useEffect(() => {
     const interval = setInterval(() => {
       getStock()
-    }, 3000)
+    }, 5000)
 
     return () => {
       clearInterval(interval)

@@ -92,7 +92,7 @@ export const Product = () => {
         )}
         {loading && <Spinner />}
 
-        <ProductActions />
+        <ProductActions id={product.id} />
       </div>
     </div>
   )
